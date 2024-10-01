@@ -1,0 +1,17 @@
+extends base
+
+block content 
+    h1=pageTitle
+    if errorMessage
+        span=errorMessage
+    form(method="POST")
+        input(placeholder="Name" id="Name" name="name" type="text",required)
+        input(placeholder="Username" id="Username" name="username" type="text",required)
+        input(placeholder="Email" id="Email" name="email" type="email",required)
+        input(placeholder="Password" id="Password" name="password" type="password",required)
+        input(placeholder="Confirm Password" id="Confirm Password" name="confirmPassword" type="password",required)
+        input(placeholder="Location" id="Location" name="location" type="text",required)
+        input(type="submit" value="Join")
+    div 
+        span Already have an account?
+        a(href="/login") Log in now &rarr;
