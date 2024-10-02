@@ -1,14 +1,15 @@
 header
-
     nav 
         ul 
             li
                 a(href="/") Home
+            li 
+                a(href="/search") Search
             if loggedIn 
                 li
                     a(href="/videos/upload") Upload Video
                 li
-                    a(href="#") Edit Profile
+                    a(href="/users/edit") Edit Profile
                 li
                     a(href="/logout")  Log Out
             else 

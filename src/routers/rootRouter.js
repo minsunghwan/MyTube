@@ -6,6 +6,7 @@ import {
   getJoin,
   postJoin,
 } from "../Controllers/userController";
+import { search } from "../Controllers/videoController";
 import { publicOnlyMiddleware, protectorMiddleware } from "../middlewares";
 
 const rootRouter = express.Router();
@@ -19,5 +20,7 @@ rootRouter
 rootRouter.route("/join").all(publicOnlyMiddleware).get(getJoin).post(postJoin);
 
 rootRouter.get("/logout", protectorMiddleware, logout);
+
+rootRouter.get("/search", search);
 
 export default rootRouter;

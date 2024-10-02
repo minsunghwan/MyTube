@@ -1,0 +1,9 @@
+mixin video(video)
+    img(src=video.thumbUrl ,alt=video.title,style="width: 200px; height: auto;" )
+    br
+    a(href=`/videos/${video.id}`)=video.title
+    div
+    span #{video.name}
+    br
+    span #{video.meta.views}
+    br

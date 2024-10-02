@@ -1,0 +1,11 @@
+extends base
+include mixins/video
+
+block content 
+    form(method="GET")
+        input(placeholder="Search by title" name="keyword" type="text")
+        
+    each video in videos 
+        +video(video)
+    else 
+        span No Videos Found.
