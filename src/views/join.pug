@@ -1,9 +1,9 @@
 extends base
 
 block content 
-    h1=pageTitle
+    h1#pageTitle=pageTitle
     if errorMessage
-        span=errorMessage
+        span#errorMessage=errorMessage
     form(method="POST")
         input(placeholder="Name" id="Name" name="name" type="text",required)
         input(placeholder="Username" id="Username" name="username" type="text",required)
@@ -12,6 +12,6 @@ block content
         input(placeholder="Confirm Password" id="Confirm Password" name="confirmPassword" type="password",required)
         input(placeholder="Location" id="Location" name="location" type="text",required)
         input(type="submit" value="Join")
-    div 
-        span Already have an account?
+    div#form_under
+        span Already have an account?    
         a(href="/login") Log in now &rarr;

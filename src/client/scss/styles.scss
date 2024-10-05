@@ -1,5 +1,46 @@
-@import "./confing/_variables.scss";
+// Config
+@import "./config/_variables.scss";
+@import "./config/_reset.scss";
 
+// Components
 
-//screens
+@import "./components/header.scss";
+@import "./components/footer.scss";
+@import "./components/video.scss";
+@import "./components/shared.scss";
+@import "./components/forms.scss";
+@import "./components/social-login.scss";
+@import "./components/video-player.scss";
+
+// Screens
+
+@import "./screens/search.scss";
+@import "./screens/profile.scss";
+@import "./screens/edit-profile.scss";
+@import "./screens/upload.scss";
 @import "./screens/watch.scss";
+
+body {
+    font-family: "Protest Strike", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    height: 100%;
+
+    color: white;
+    background-color: $bg;
+}
+
+
+
+#pageTitle{
+    justify-content: center;
+    text-align: center;
+    margin: 20px auto;
+    font-size: 60px;
+}
+#errorMessage{
+    display: flex; // Flexbox 적용
+    justify-content: center!important;
+    text-align: center !important;
+    margin-bottom: 7px;
+}

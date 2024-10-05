@@ -1,5 +1,5 @@
 import express from "express";
-import { home, logout } from "../Controllers/rootController";
+import { home } from "../Controllers/rootController";
 import {
   getLogin,
   postLogin,
@@ -18,9 +18,6 @@ rootRouter
   .get(getLogin)
   .post(postLogin);
 rootRouter.route("/join").all(publicOnlyMiddleware).get(getJoin).post(postJoin);
-
-rootRouter.get("/logout", protectorMiddleware, logout);
-
 rootRouter.get("/search", search);
 
 export default rootRouter;

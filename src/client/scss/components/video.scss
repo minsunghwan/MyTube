@@ -1,0 +1,44 @@
+:root {
+    --yt-spec-text-secondary: #606060; // CSS 변수 정의
+}
+
+.video-grid {
+    margin-top: 5%;
+    margin-left: 5%;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    
+}
+
+.video-mixin {
+    margin-top: 20px;
+    .video-mixin__thumb {
+        height: 140px; // 고정된 높이 설정
+        border-radius: 7px;
+        width: 80%;
+        background-color: ivory;
+        object-fit: cover; // 이미지 비율을 유지하며 영역에 맞게 잘라내기
+     
+    }
+    .video-mixin__data {
+        margin-top: 5px;
+        a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+        }
+        .video-mixin__meta {
+            .video-mixin__meta-owner {
+                color: var(--yt-spec-text-secondary);
+                font-size: 16px;
+                margin-right: 30px;
+            }
+            .video-mixin__meta-views {
+                color: var(--yt-spec-text-secondary);
+                font-size: 16px;
+                margin-left: 50%;
+            }
+        }
+    }
+}

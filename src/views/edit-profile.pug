@@ -1,11 +1,15 @@
 extends base
 
-block content 
+block content
+    h1#pageTitle=pageTitle 
     if errorMessage
         span=errorMessage
-    img(src="/"+loggedInUser.avatarUrl, width="100",height="100")
     form(method="POST" enctype="multipart/form-data")
         label(for="avatar") Avatar
+        if loggedInUser.avatarUrl
+            img#profileImg(src="/"+loggedInUser.avatarUrl, width="100",height="100")
+        else
+            span(style="color:red") Image not found
         input(type="file", id="avatar" ,accept="img/*",name="avatar")
         span Name :
         input(placeholder="Name" name="name" type="text" required value=loggedInUser.name)

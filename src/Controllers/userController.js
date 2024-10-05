@@ -124,7 +124,7 @@ export const postEdit = async (req, res) => {
 
   req.session.user = updateUser;
 
-  return res.redirect("/users/edit");
+  return res.redirect("/users/edit", { pageTitle: "Edit Profile" });
 };
 
 export const startGithubLogin = (req, res) => {
@@ -191,7 +191,7 @@ export const finishGithubLogin = async (req, res) => {
 
       if (!user) {
         user = await User.create({
-          avatarUrl: userData.avatar_url,
+          avatarUrl: userData.avatar_url ? userData.avatar_url : null,
           username: userData.login,
           name: userData.name ? userData.name : userData.login,
           email: emailObj.email,
@@ -248,4 +248,27 @@ export const postChangePassword = async (req, res) => {
   await user.save();
 
   return res.redirect("/logout");
+};
+
+export const logout = (req, res) => {
+  req.session.destroy();
+  return res.redirect("/");
+};
+
+export const see = async (req, res) => {
+  const { id } = req.params;
+  const user = await User.findById(id).populate({
+    path: "videos",
+    populate: {
+      path: "owner",
+      model: "User",
+    },
+  });
+  if (!user) {
+    return res.status(404).render("404", { pageTitle: "User not found." });
+  }
+  return res.render("profile", {
+    pageTitle: user.name,
+    user,
+  });
 };
