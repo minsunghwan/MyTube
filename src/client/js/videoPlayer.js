@@ -1,6 +1,8 @@
 const video = document.querySelector("video");
 const playBtn = document.getElementById("play");
+const playBtnIcon = playBtn.querySelector("i");
 const muteBtn = document.getElementById("mute");
+const muteBtnIcon = muteBtn.querySelector("i");
 const volumeRange = document.getElementById("volume");
 const timeline = document.getElementById("timeline");
 const totalTime = document.getElementById("totalTime");
@@ -8,6 +10,7 @@ const currentTime = document.getElementById("currentTime");
 const videoControls = document.getElementById("videoControls");
 const videoContainer = document.getElementById("videoContainer");
 const fullScreenBtn = document.getElementById("fullScreen");
+const fullScreenIcon = fullScreenBtn.querySelector("i");
 
 let controlsTimeout = null;
 let controlsMovementTimeout = null;
@@ -20,7 +23,7 @@ const handlePlayClick = (e) => {
   } else {
     video.pause();
   }
-  playBtn.innerText = video.paused ? "Play" : "Pause";
+  playBtnIcon.classList = video.paused ? "fas fa-play" : "fas fa-pause";
 };
 
 const handleMute = (e) => {
@@ -30,7 +33,7 @@ const handleMute = (e) => {
     video.muted = true;
   }
 
-  muteBtn.innerText = video.muted ? "UnMute" : "Mute";
+  muteBtn.innerText = video.muted ? "fas fa-volume-mute" : "fas fa-volume-up";
   volumeRange.value = video.muted ? 0 : volumeValue;
 };
 
@@ -72,10 +75,10 @@ const handleFullScreen = () => {
 
   if (fullscreen) {
     document.exitFullscreen();
-    fullScreenBtn.innerText = "Enter Full Screen";
+    fullScreenIcon.classList = "fas fa-expand";
   } else {
     videoContainer.requestFullscreen();
-    fullScreenBtn.innerText = "Exit Full Screen";
+    fullScreenIcon.classList = "fas fa-compress";
   }
 };
 
@@ -111,10 +114,13 @@ const handleVideSpaceBar = (event) => {
 };
 
 const handleEnterOrExitFullScreen = (event) => {
-  if (event.code === "KeyF") {
-    videoContainer.requestFullscreen();
-  } else if (event.code === "Escape") {
-    document.exitFullscreen();
+  const isTextAreaFocused = document.activeElement.tagName === "TEXTAREA";
+  if (!isTextAreaFocused) {
+    if (event.code === "KeyF") {
+      videoContainer.requestFullscreen();
+    } else if (event.code === "Escape") {
+      document.exitFullscreen();
+    }
   }
 };
 
@@ -134,6 +140,7 @@ timeline.addEventListener("input", handleTimelineChange);
 //Video
 video.addEventListener("timeupdate", handleTimeUpdate);
 video.addEventListener("click", handleVideoScreenClick);
+video.addEventListener("ended", handleEnded);
 
 //videoContainer
 videoContainer.addEventListener("mousemove", handleMouseMove);

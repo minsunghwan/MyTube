@@ -31,8 +31,6 @@ export const postLogin = async (req, res) => {
   req.session.loggedIn = true;
   req.session.user = user;
 
-  console.log(req.session.user);
-
   res.redirect("/");
 };
 
@@ -113,7 +111,7 @@ export const postEdit = async (req, res) => {
   const updateUser = await User.findByIdAndUpdate(
     _id,
     {
-      avatarUrl: file ? file.path : avatarUrl,
+      avatarUrl: file ? file.location : avatarUrl,
       name: name,
       email: email,
       username: username,
@@ -124,7 +122,7 @@ export const postEdit = async (req, res) => {
 
   req.session.user = updateUser;
 
-  return res.redirect("/users/edit", { pageTitle: "Edit Profile" });
+  return res.redirect("/users/edit");
 };
 
 export const startGithubLogin = (req, res) => {
@@ -191,7 +189,7 @@ export const finishGithubLogin = async (req, res) => {
 
       if (!user) {
         user = await User.create({
-          avatarUrl: userData.avatar_url ? userData.avatar_url : null,
+          avatarUrl: userData.avatar_url,
           username: userData.login,
           name: userData.name ? userData.name : userData.login,
           email: emailObj.email,
@@ -247,7 +245,7 @@ export const postChangePassword = async (req, res) => {
   user.password = newPassword;
   await user.save();
 
-  return res.redirect("/logout");
+  return res.redirect("/users/logout");
 };
 
 export const logout = (req, res) => {

@@ -5,7 +5,7 @@ import "./models/User";
 import "./models/Video";
 import "./db";
 
-const PORT = 8080;
+const PORT = 3000;
 
 const handleListening = () => {
   console.log(`✅ Server Listening on port http://localhost:${PORT} ❤️`);

@@ -5,6 +5,5 @@ export const home = async (req, res) => {
     .sort({ createdAt: "desc" })
     .populate("owner");
 
-  console.log(videos);
   return res.render("home", { pageTitle: "Home", videos });
 };
